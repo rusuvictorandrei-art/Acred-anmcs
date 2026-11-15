@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #e0f1ef;
+  --color-brand-100: #cdede9;
+  --color-brand-600: #0f6e6e;
+  --color-brand-700: #0a4f4f;
+  --color-ink: #12202f;
+  --color-navy: #0e2a3b;
+  --color-navy-light: #1e4d63;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+body {
+  background: #f4f6f8;
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
+}
+
+@utility input {
+  @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm min-h-11;
+}
+@utility label {
+  @apply flex flex-col gap-1.5 text-sm font-medium;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold min-h-11 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
+}
+@utility btn-primary {
+  @apply btn bg-brand-600 text-white hover:bg-brand-700;
+}
+@utility btn-secondary {
+  @apply btn border border-slate-300 bg-white text-ink hover:bg-slate-50;
+}
+@utility card {
+  @apply rounded-xl border border-slate-200 bg-white;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+}
