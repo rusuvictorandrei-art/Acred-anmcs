@@ -1,14 +1,27 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { SUPABASE_CONFIG_OK, SUPABASE_KEY, SUPABASE_URL } from "@/lib/supabase/env";
 
 const PUBLIC_PATHS = ["/login", "/auth"];
 
 export async function middleware(request: NextRequest) {
-  let response = NextResponse.next({ request });
+  const response = NextResponse.next({ request });
+  // Fără configurare: lăsăm pagina să afișeze mesajul explicativ în loc să cadă tot site-ul.
+  if (!SUPABASE_CONFIG_OK) return response;
+  try {
+    return await refreshSession(request, response, SUPABASE_URL, SUPABASE_KEY);
+  } catch (e) {
+    console.error("Eroare middleware:", e);
+    return response;
+  }
+}
+
+async function refreshSession(request: NextRequest, initial: NextResponse, url: string, key: string) {
+  let response = initial;
 
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    url,
+    key,
     {
       cookies: {
         getAll() {
