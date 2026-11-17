@@ -80,9 +80,9 @@ Reîncarcă site-ul: în meniu apare **Import standarde**.
 
 Rulează o dată `supabase/admin-panou.sql` în Supabase → SQL Editor (după ce ți-ai făcut cont în aplicație cu adresa de administrator din fișier). În meniu apare **Administrare platformă**: toate spitalele, utilizatorii cu ultima conectare și activitatea pe toată platforma.
 
-### Securitate: aprobarea spitalelor și autentificarea în doi pași
+### Securitate: aprobarea spitalelor noi
 
-Rulează o dată `supabase/securitate.sql`. Spitalele noi așteaptă aprobarea ta din panou (Aprobă / Respinge / Suspendă). Fiecare utilizator își poate activa autentificarea în doi pași din **Contul meu**; după activare, baza de date nu-i dă acces la date fără codul din aplicația de autentificare. Din panou poți reseta autentificarea pentru cine și-a pierdut telefonul.
+Rulează o dată `supabase/securitate.sql`. Spitalele noi așteaptă aprobarea ta din panou (Aprobă / Respinge / Suspendă). Fișierul pregătește și baza de date pentru autentificarea în doi pași, dar opțiunea nu e afișată în aplicație.
 
 ### Pasul 7 – Importă standardele reale
 

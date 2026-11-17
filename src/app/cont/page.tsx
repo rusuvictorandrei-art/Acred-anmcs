@@ -2,7 +2,6 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { Logo } from "@/components/Logo";
-import { MfaSettings } from "@/components/MfaSettings";
 import { requireSecondFactor } from "@/lib/mfa";
 import { changePassword } from "./actions";
 
@@ -25,11 +24,6 @@ export default async function AccountPage({ searchParams }: { searchParams: Prom
         <h1 className="text-3xl font-semibold tracking-tight">Contul meu</h1>
         <p className="text-sm text-slate-600">{user.email}</p>
       </header>
-
-      <section className="card flex flex-col gap-4 p-6">
-        <h2 className="font-semibold">Autentificare în doi pași</h2>
-        <MfaSettings />
-      </section>
 
       <section className="card flex flex-col gap-4 p-6">
         <h2 className="font-semibold">Schimbă parola</h2>
