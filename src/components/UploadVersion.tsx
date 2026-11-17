@@ -46,6 +46,9 @@ export function UploadVersion({ hospitalId, documentId }: { hospitalId: string; 
 
   return (
     <div className="flex flex-col gap-3 rounded-lg bg-slate-50 p-4">
+      <p className="rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+        <strong>Fără date despre pacienți.</strong> Nu încărca foi de observație, rezultate sau alte documente cu date ale pacienților. Anonimizează dovezile înainte de încărcare.
+      </p>
       <label className="label">
         Fișier (PDF, Word, Excel; maximum {MAX_MB} MB)
         <input

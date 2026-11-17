@@ -24,7 +24,7 @@ export default function LoginPage() {
         <form action={mode === "in" ? inAction : upAction} className="flex flex-col gap-4">
           <label className="label">
             E-mail
-            <input className="input" type="email" name="email" required autoComplete="email" />
+            <input key={state.email ?? ""} className="input" type="email" name="email" required autoComplete="email" defaultValue={state.email} />
           </label>
           <label className="label">
             Parolă
@@ -37,6 +37,17 @@ export default function LoginPage() {
               autoComplete={mode === "in" ? "current-password" : "new-password"}
             />
           </label>
+          {mode === "up" && (
+            <label className="flex items-start gap-3 text-sm leading-snug">
+              <input type="checkbox" name="accept" value="da" required className="mt-0.5 size-5 flex-none accent-brand-600" />
+              <span>
+                Am citit și accept{" "}
+                <a href="/legal/termeni" target="_blank" className="text-brand-700 underline">Termenii și condițiile</a> și{" "}
+                <a href="/legal/confidentialitate" target="_blank" className="text-brand-700 underline">Politica de confidențialitate</a>.
+                Înțeleg că în aplicație nu se încarcă date despre pacienți.
+              </span>
+            </label>
+          )}
           {state.error && <p role="alert" className="text-sm text-red-700">{state.error}</p>}
           {state.message && <p role="status" className="text-sm text-emerald-800">{state.message}</p>}
           <button className="btn-primary" disabled={pending}>
@@ -50,6 +61,11 @@ export default function LoginPage() {
         >
           {mode === "in" ? "Nu ai cont? Creează unul" : "Ai deja cont? Autentifică-te"}
         </button>
+        <nav aria-label="Documente legale" className="flex flex-wrap gap-x-4 gap-y-1 border-t border-slate-100 pt-4 text-xs text-slate-600">
+          <a href="/legal/termeni" className="underline">Termeni</a>
+          <a href="/legal/confidentialitate" className="underline">Confidențialitate</a>
+          <a href="/legal/securitate" className="underline">Securitatea datelor</a>
+        </nav>
       </div>
     </main>
   );

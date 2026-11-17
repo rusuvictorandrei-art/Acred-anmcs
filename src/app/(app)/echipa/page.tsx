@@ -115,6 +115,17 @@ export default async function TeamPage() {
       )}
 
       <section className="card flex flex-col gap-3 p-6">
+        <h2 className="font-semibold">Documente contractuale</h2>
+        <p className="text-sm text-slate-600">Modelele de semnat între unitatea sanitară și furnizorul aplicației. Le poți tipări sau salva ca PDF.</p>
+        <ul className="flex flex-wrap gap-2">
+          <li><a href="/legal/contract" className="btn-secondary">Contract de abonament</a></li>
+          <li><a href="/legal/acord-prelucrare-date" className="btn-secondary">Acord de prelucrare a datelor</a></li>
+          <li><a href="/legal/securitate" className="btn-secondary">Fișa de securitate</a></li>
+          <li><a href="/legal/termeni" className="btn-secondary">Termeni</a></li>
+        </ul>
+      </section>
+
+      <section className="card flex flex-col gap-3 p-6">
         <h2 className="font-semibold">Activitate recentă</h2>
         {(activity ?? []).length === 0 && <p className="text-sm text-slate-600">Nicio activitate încă.</p>}
         <ul className="flex flex-col gap-2 text-sm">

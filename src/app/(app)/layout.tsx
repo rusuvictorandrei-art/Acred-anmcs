@@ -37,6 +37,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           <form action={signOut}>
             <button className="min-h-11 text-left text-slate-200 underline underline-offset-2">Ieșire din cont</button>
           </form>
+          <a href="/legal" className="text-slate-400 underline underline-offset-2">Documente legale</a>
         </div>
       </nav>
       </div>

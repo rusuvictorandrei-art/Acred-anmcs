@@ -99,6 +99,10 @@ Un spital nou își face singur cont și alege „Înregistrez spitalul meu”. 
 
 ---
 
+## Documente legale
+
+Paginile publice de la `/legal` (termeni, confidențialitate, fișa de securitate, modelele de contract și de acord de prelucrare a datelor) se generează din `src/content/legal/`. Datele firmei se completează **o singură dată** în `src/lib/company.ts`. Tot acolo, `FACTS` spune ce măsuri sunt declarate public: treci `dailyBackups` pe `true` doar după activarea backup-urilor. Textele sunt ciorne și trebuie revizuite de un avocat înainte de semnare.
+
 ## Înainte de primul client real
 
 - **Fără date despre pacienți.** Aplicația e gândită pentru documente organizaționale: proceduri, protocoale, procese-verbale. Spune-le clar spitalelor să nu încarce foi de observație sau alte documente cu date de pacienți.
