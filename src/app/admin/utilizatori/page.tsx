@@ -40,7 +40,7 @@ export default async function AdminUsers() {
         <table className="w-full min-w-[820px] border-collapse text-sm">
           <thead>
             <tr className="text-left text-xs text-slate-600">
-              {["Utilizator", "Spital", "Rol", "Ultima conectare", "Cont creat", "E-mail confirmat"].map((t) => (
+              {["Utilizator", "Spital", "Rol în spital", "Ultima conectare", "Cont creat", "E-mail confirmat"].map((t) => (
                 <th key={t} scope="col" className="border-b border-slate-200 px-4 py-3 font-semibold">{t}</th>
               ))}
             </tr>
@@ -56,7 +56,7 @@ export default async function AdminUsers() {
                   )}
                 </td>
                 <td className="border-b border-slate-100 px-4 py-3">{u.hospital_name ?? <span className="text-slate-500">fără spital</span>}</td>
-                <td className="border-b border-slate-100 px-4 py-3">{u.role ? ROLES[u.role] : "—"}</td>
+                <td className="border-b border-slate-100 px-4 py-3">{u.role ? (u.role === "admin" ? "Administrator al spitalului" : ROLES[u.role]) : "—"}</td>
                 <td className="border-b border-slate-100 px-4 py-3">
                   <div className="whitespace-nowrap font-medium">{ago(u.last_sign_in_at)}</div>
                   <div className="whitespace-nowrap text-xs text-slate-600">{fmtDateTime(u.last_sign_in_at)}</div>
