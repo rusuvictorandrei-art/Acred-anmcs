@@ -5,12 +5,12 @@ import { usePathname } from "next/navigation";
 
 type Item = { href: string; label: string };
 
-export function Nav({ items }: { items: Item[] }) {
+export function Nav({ items, exact = false }: { items: Item[]; exact?: boolean }) {
   const pathname = usePathname();
   return (
     <ul className="-mx-1 flex gap-1 overflow-x-auto px-1 pb-1 md:mx-0 md:flex-col md:overflow-visible md:px-0 md:pb-0">
       {items.map((it) => {
-        const active = it.href === "/" ? pathname === "/" : pathname.startsWith(it.href);
+        const active = it.href === "/" || exact ? pathname === it.href : pathname.startsWith(it.href);
         return (
           <li key={it.href}>
             <Link

@@ -1,22 +1,10 @@
 import { getContext } from "@/lib/context";
-import { ROLES, fmtDateTime } from "@/lib/format";
+import { ACTIONS, ROLES, fmtDateTime } from "@/lib/format";
 import { PageHeader } from "@/components/PageHeader";
 import { signOut } from "@/app/login/actions";
 import { cancelInvite, changeRole, inviteMember, removeMember, updateHospital } from "../actions";
 
-const ACTIONS: Record<string, string> = {
-  spital_creat: "a creat spitalul",
-  autoevaluare: "a evaluat cerința",
-  sarcina_noua: "a adăugat acțiunea",
-  sarcina_finalizata: "a finalizat acțiunea",
-  sarcina_redeschisa: "a redeschis acțiunea",
-  document_nou: "a creat documentul",
-  versiune_noua: "a încărcat versiunea",
-  document_aprobat: "a aprobat documentul",
-  document_retras: "a retras documentul",
-  document_draft: "a reactivat documentul",
-  invitatie: "a invitat",
-};
+
 
 export default async function TeamPage() {
   const ctx = await getContext();

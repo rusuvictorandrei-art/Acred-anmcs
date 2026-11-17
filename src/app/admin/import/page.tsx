@@ -1,12 +1,10 @@
-import { redirect } from "next/navigation";
-import { getContext } from "@/lib/context";
+import { getAdminContext } from "@/lib/admin";
 import { PageHeader } from "@/components/PageHeader";
 import { ImportForm } from "./ImportForm";
 import { deleteDemoData } from "../actions";
 
 export default async function ImportPage() {
-  const ctx = await getContext();
-  if (!ctx.isPlatformAdmin) redirect("/");
+  const ctx = await getAdminContext();
   const [{ count: reqCount }, { count: simCount }, { count: demoCount }] = await Promise.all([
     ctx.supabase.from("requirements").select("id", { count: "exact", head: true }),
     ctx.supabase.from("sim_questions").select("id", { count: "exact", head: true }),

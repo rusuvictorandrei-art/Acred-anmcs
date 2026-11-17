@@ -67,3 +67,18 @@ export function score(statuses: string[]): number {
   const sum = relevant.reduce((acc, s) => acc + (s === "conform" ? 1 : s === "partial" ? 0.5 : 0), 0);
   return Math.round((sum / relevant.length) * 100);
 }
+
+/** Textul afișat în jurnalul de activitate. */
+export const ACTIONS: Record<string, string> = {
+  spital_creat: "a creat spitalul",
+  autoevaluare: "a evaluat cerința",
+  sarcina_noua: "a adăugat acțiunea",
+  sarcina_finalizata: "a finalizat acțiunea",
+  sarcina_redeschisa: "a redeschis acțiunea",
+  document_nou: "a creat documentul",
+  versiune_noua: "a încărcat versiunea",
+  document_aprobat: "a aprobat documentul",
+  document_retras: "a retras documentul",
+  document_draft: "a reactivat documentul",
+  invitatie: "a invitat",
+};

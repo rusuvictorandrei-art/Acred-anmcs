@@ -15,7 +15,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     { href: "/dosar", label: "Dosar pentru evaluatori" },
     { href: "/echipa", label: "Echipa și setări" },
   ];
-  if (ctx.isPlatformAdmin) items.push({ href: "/import", label: "Import standarde" });
+  if (ctx.isPlatformAdmin) items.push({ href: "/admin", label: "Administrare platformă" });
 
   return (
     <div className="flex min-h-screen flex-wrap">

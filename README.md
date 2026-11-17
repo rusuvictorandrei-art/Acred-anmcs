@@ -76,6 +76,10 @@ select id from auth.users where email = 'adresa.ta@exemplu.ro';
 
 Reîncarcă site-ul: în meniu apare **Import standarde**.
 
+### Panoul de administrare
+
+Rulează o dată `supabase/admin-panou.sql` în Supabase → SQL Editor (după ce ți-ai făcut cont în aplicație cu adresa de administrator din fișier). În meniu apare **Administrare platformă**: toate spitalele, utilizatorii cu ultima conectare și activitatea pe toată platforma.
+
 ### Pasul 7 – Importă standardele reale
 
 1. Pe pagina **Import standarde** descarcă **fișierul model**.

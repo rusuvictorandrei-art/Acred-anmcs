@@ -34,9 +34,8 @@ export const getContext = cache(async (): Promise<AppContext> => {
     .limit(1)
     .maybeSingle();
 
-  if (!membership) redirect("/start");
-
   const { data: pa } = await supabase.from("platform_admins").select("user_id").eq("user_id", user.id).maybeSingle();
+  if (!membership) redirect(pa ? "/admin" : "/start");
 
   const hospital = membership.hospitals as unknown as { name: string; next_visit: string | null } | null;
   const role = membership.role as Role;
