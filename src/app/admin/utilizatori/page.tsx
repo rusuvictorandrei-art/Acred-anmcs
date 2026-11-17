@@ -1,6 +1,7 @@
 import { getAdminContext } from "@/lib/admin";
 import { PageHeader } from "@/components/PageHeader";
 import { ROLES, fmtDateTime } from "@/lib/format";
+import { resetUserMfa } from "../actions";
 
 type UserRow = {
   id: string;
@@ -12,6 +13,7 @@ type UserRow = {
   role: string | null;
   hospital_name: string | null;
   is_platform_admin: boolean;
+  has_mfa?: boolean;
 };
 
 function ago(iso: string | null): string {
@@ -37,10 +39,10 @@ export default async function AdminUsers() {
         description="Toate conturile din aplicație, ordonate după ultima conectare. Pentru blocarea sau ștergerea unui cont folosește Supabase → Authentication → Users."
       />
       <section className="card overflow-x-auto">
-        <table className="w-full min-w-[820px] border-collapse text-sm">
+        <table className="w-full min-w-[900px] border-collapse text-sm">
           <thead>
             <tr className="text-left text-xs text-slate-600">
-              {["Utilizator", "Spital", "Rol în spital", "Ultima conectare", "Cont creat", "E-mail confirmat"].map((t) => (
+              {["Utilizator", "Spital", "Rol în spital", "Ultima conectare", "Cont creat", "E-mail confirmat", "Doi pași"].map((t) => (
                 <th key={t} scope="col" className="border-b border-slate-200 px-4 py-3 font-semibold">{t}</th>
               ))}
             </tr>
@@ -64,6 +66,19 @@ export default async function AdminUsers() {
                 <td className="whitespace-nowrap border-b border-slate-100 px-4 py-3">{fmtDateTime(u.created_at)}</td>
                 <td className="border-b border-slate-100 px-4 py-3">
                   {u.email_confirmed_at ? "Da" : <span className="font-semibold text-amber-900">Neconfirmat</span>}
+                </td>
+                <td className="border-b border-slate-100 px-4 py-3">
+                  {u.has_mfa ? (
+                    <>
+                      <span className="font-semibold text-emerald-800">Activă</span>
+                      <form action={resetUserMfa}>
+                        <input type="hidden" name="user_id" value={u.id} />
+                        <button className="min-h-11 text-xs text-red-700 underline" title="Pentru cine și-a pierdut telefonul">Resetează</button>
+                      </form>
+                    </>
+                  ) : (
+                    <span className="text-slate-600">Nu</span>
+                  )}
                 </td>
               </tr>
             ))}

@@ -83,3 +83,20 @@ export async function deleteDemoData() {
   await ctx.supabase.from("sim_questions").delete().like("code", "SIM-%");
   revalidatePath("/", "layout");
 }
+
+export async function setHospitalStatus(fd: FormData) {
+  const ctx = await getAdminContext();
+  const { error } = await ctx.supabase.rpc("admin_set_hospital_status", {
+    p_hospital: str(fd, "hospital_id"),
+    p_status: str(fd, "status"),
+  });
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin", "layout");
+}
+
+export async function resetUserMfa(fd: FormData) {
+  const ctx = await getAdminContext();
+  const { error } = await ctx.supabase.rpc("admin_reset_mfa", { p_user: str(fd, "user_id") });
+  if (error) throw new Error(error.message);
+  revalidatePath("/admin/utilizatori");
+}

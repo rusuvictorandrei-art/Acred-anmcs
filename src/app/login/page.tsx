@@ -33,7 +33,7 @@ export default function LoginPage() {
               type="password"
               name="password"
               required
-              minLength={mode === "up" ? 8 : undefined}
+              minLength={mode === "up" ? 10 : undefined}
               autoComplete={mode === "in" ? "current-password" : "new-password"}
             />
           </label>

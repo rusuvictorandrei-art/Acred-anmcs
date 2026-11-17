@@ -14,6 +14,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
     { href: "/simulare", label: "Simulare vizită" },
     { href: "/dosar", label: "Dosar pentru evaluatori" },
     { href: "/echipa", label: "Echipa și setări" },
+    { href: "/cont", label: "Contul meu" },
   ];
   if (ctx.isPlatformAdmin) items.push({ href: "/admin", label: "Administrare platformă" });
 

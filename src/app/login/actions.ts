@@ -18,7 +18,7 @@ export async function signIn(_: AuthState, formData: FormData): Promise<AuthStat
 export async function signUp(_: AuthState, formData: FormData): Promise<AuthState> {
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
-  if (password.length < 8) return { error: "Parola trebuie să aibă cel puțin 8 caractere." };
+  if (password.length < 10) return { error: "Parola trebuie să aibă cel puțin 10 caractere." };
   const supabase = await createClient();
   const h = await headers();
   const origin = h.get("origin") ?? `https://${h.get("host")}`;

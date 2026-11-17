@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { Logo } from "@/components/Logo";
 import { signOut } from "@/app/login/actions";
+import { requireSecondFactor } from "@/lib/mfa";
 
 async function createHospital(formData: FormData) {
   "use server";
@@ -29,6 +30,7 @@ export default async function StartPage({ searchParams }: { searchParams: Promis
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) redirect("/login");
+  await requireSecondFactor(supabase);
   const { data: m } = await supabase.from("memberships").select("hospital_id").eq("user_id", user.id).limit(1);
   if (m && m.length) redirect("/");
 

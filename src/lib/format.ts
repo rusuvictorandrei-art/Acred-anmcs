@@ -81,4 +81,7 @@ export const ACTIONS: Record<string, string> = {
   document_retras: "a retras documentul",
   document_draft: "a reactivat documentul",
   invitatie: "a invitat",
+  spital_aprobat: "a aprobat spitalul",
+  spital_suspendat: "a suspendat spitalul",
+  spital_in_asteptare: "a trecut în așteptare spitalul",
 };

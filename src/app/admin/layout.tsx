@@ -11,6 +11,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     { href: "/admin/utilizatori", label: "Utilizatori" },
     { href: "/admin/activitate", label: "Activitate" },
     { href: "/admin/import", label: "Import standarde" },
+    { href: "/cont", label: "Contul meu" },
   ];
   // Pe telefon, colțul de jos al meniului e ascuns, deci legătura spre spital e în meniu.
   if (ctx.hasHospital) items.push({ href: "/", label: "← Spitalul meu" });
@@ -38,7 +39,17 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         </nav>
       </div>
       <main className="min-w-0 flex-1 basis-[560px] p-5 md:p-8">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6">{children}</div>
+        <div className="mx-auto flex max-w-6xl flex-col gap-6">
+          {!ctx.hasMfa && (
+            <div role="alert" className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
+              <span>
+                <strong>Contul tău are acces la toate spitalele.</strong> Activează autentificarea în doi pași ca să-l protejezi.
+              </span>
+              <Link href="/cont" className="btn-primary">Activează acum</Link>
+            </div>
+          )}
+          {children}
+        </div>
       </main>
     </div>
   );
