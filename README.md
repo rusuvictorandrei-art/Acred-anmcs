@@ -13,7 +13,7 @@ Aplicație web prin care spitalele își pregătesc documentația și protocoale
 
 Fiecare spital vede **doar datele lui**. Regula e impusă chiar în baza de date (Row Level Security), nu doar în aplicație.
 
-> ⚠️ Standardele incluse sunt **demonstrative** (cod „DEMO-…”). Înainte de a lucra cu un spital, importă standardele și indicatorii reali din manualul ANMCS în vigoare.
+> Standardele reale (ediția a II-a, 2018: 17 standarde, 802 indicatori) se încarcă rulând o dată `supabase/import-standarde-editia-2.sql` în Supabase → SQL Editor. Fișierul înlocuiește datele demonstrative. Codurile de tip `S1.2-C3-R1-I2` sunt numerotarea internă a aplicației, nu codurile din listele de verificare ANMCS.
 
 ---
 

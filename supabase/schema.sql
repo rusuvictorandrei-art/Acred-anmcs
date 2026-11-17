@@ -59,6 +59,10 @@ create table public.requirements (
   title text not null,
   description text,
   guidance text,          -- ce verifică evaluatorul
+  standard_code text,     -- ex. „1.2”
+  standard_name text,
+  criterion text,
+  cerinta text,
   sort int not null default 0
 );
 create index on public.requirements (section_id);

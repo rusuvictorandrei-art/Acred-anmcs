@@ -9,6 +9,10 @@ export type Requirement = {
   description: string | null;
   guidance: string | null;
   sort: number;
+  standard_code: string | null;
+  standard_name: string | null;
+  criterion: string | null;
+  cerinta: string | null;
 };
 export type Assessment = { requirement_id: string; status: string; note: string | null; updated_at: string };
 export type DocumentRow = {

@@ -68,11 +68,20 @@ export default async function DossierPage({ searchParams }: { searchParams: SP }
                     </tr>
                   </thead>
                   <tbody>
-                    {reqs.map((r) => {
+                    {reqs.map((r, i) => {
                       const a = assessments.get(r.id);
+                      const stdHeader =
+                        r.standard_code && r.standard_code !== reqs[i - 1]?.standard_code ? (
+                          <tr key={`std-${r.id}`} className="break-inside-avoid">
+                            <td colSpan={4} className="border border-slate-300 bg-slate-100 px-2 py-1.5 font-semibold">
+                              Standardul {r.standard_code} · {r.standard_name}
+                            </td>
+                          </tr>
+                        ) : null;
                       const st = STATUS[statusOf(r.id) as keyof typeof STATUS];
                       const docs = links.filter((l) => l.requirement_id === r.id).map((l) => docById.get(l.document_id)).filter((d) => d && d.status !== "retras");
-                      return (
+                      return [
+                        stdHeader,
                         <tr key={r.id} className="break-inside-avoid align-top">
                           <td className="border border-slate-300 px-2 py-1.5 font-semibold">{r.code}</td>
                           <td className="border border-slate-300 px-2 py-1.5">
@@ -97,8 +106,8 @@ export default async function DossierPage({ searchParams }: { searchParams: SP }
                               </ul>
                             )}
                           </td>
-                        </tr>
-                      );
+                        </tr>,
+                      ];
                     })}
                   </tbody>
                 </table>

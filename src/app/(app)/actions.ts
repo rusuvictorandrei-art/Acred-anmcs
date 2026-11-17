@@ -402,6 +402,10 @@ export async function importStandards(_: ImportResult, fd: FormData): Promise<Im
       title: get(r, "titlu"),
       description: get(r, "descriere") || null,
       guidance: get(r, "ce_verifica_evaluatorul") || null,
+      standard_code: get(r, "standard_cod") || null,
+      standard_name: get(r, "standard") || null,
+      criterion: get(r, "criteriu") || null,
+      cerinta: get(r, "cerinta") || null,
       sort: i + 1,
     }));
   for (let i = 0; i < reqs.length; i += 500) {
@@ -416,5 +420,6 @@ export async function deleteDemoData() {
   const ctx = await getContext();
   if (!ctx.isPlatformAdmin) throw new Error("Doar administratorii platformei.");
   await ctx.supabase.from("requirements").delete().like("code", "DEMO-%");
+  await ctx.supabase.from("sim_questions").delete().like("code", "SIM-%");
   revalidatePath("/", "layout");
 }
